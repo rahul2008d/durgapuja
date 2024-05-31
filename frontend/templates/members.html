@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block title %}Cultural Committee members{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Members</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, #f06, #a52a2a);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 0 0 50% 50%;
+            overflow: hidden;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 600;
+            font-family: 'Great Vibes', cursive;
+        }
+        .members-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .member-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            width: 250px;
+            transition: transform 0.2s;
+        }
+        .member-card:hover {
+            transform: scale(1.05);
+        }
+        .member-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .member-info {
+            padding: 20px;
+        }
+        .member-info h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #a52a2a;
+        }
+        .member-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Dedicated Team</h1>
+        </div>
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/sujit.jpeg') }}" alt="Mr. Sujit Sen"></div>
+                <div class="member-info">
+                    <h2>Mr. Sujit Sen</h2>
+                    <p>President</p>
+                    <p>7-2-D</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="static/images/amit.jpeg" alt="Mr. Amit Mukherjee"></div>
+                <div class="member-info">
+                    <h2>Mr. Amit Mukherjee</h2>
+                    <p>Vice President</p>
+                    <p>8-6-F</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/prabal.jpeg') }}" alt="Mr. Prabal Kumar Basu"></div>
+                <div class="member-info">
+                    <h2>Mr. Prabal Kumar Basu</h2>
+                    <p>Secretary</p>
+                    <p>7-2-H</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/abhay.jpeg') }}" alt="Mr. Abhay Kumar Pramanik"></div>
+                <div class="member-info">
+                    <h2>Mr. Abhay Kumar Pramanik</h2>
+                    <p>Joint Secretary</p>
+                    <p>1-4-D</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/sankar.jpeg') }}" alt="Mr. Sankar Dey"></div>
+                <div class="member-info">
+                    <h2>Mr. Sankar Dey</h2>
+                    <p>Treasurer</p>
+                    <p>2-1-C</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/sumit.jpeg') }}" alt="Mr. Sumit Mondal"></div>
+                <div class="member-info">
+                    <h2>Mr. Sumit Mondal</h2>
+                    <p>Joint Treasurer</p>
+                    <p>8-6-H</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/monalisa.jpeg') }}" alt="Mrs. Monalisa Pal"></div>
+                <div class="member-info">
+                    <h2>Mrs. Monalisa Pal</h2>
+                    <p>Board of Managers</p>
+                    <p>1-1-C</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/habib.jpeg') }}" alt="Mr. Habib- Ur- Rahman"></div>
+                <div class="member-info">
+                    <h2>Mr. Habib- Ur- Rahman</h2>
+                    <p>Board of Managers</p>
+                    <p>7-8-F</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/mithu.jpeg') }}" alt="Mrs. Mithu Kayal"></div>
+                <div class="member-info">
+                    <h2>Mrs. Mithu Kayal</h2>
+                    <p>Board of Managers</p>
+                    <p>2-6-C</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/dibyan.jpeg') }}" alt="Mr. Dibyan Roy"></div>
+                <div class="member-info">
+                    <h2>Mr. Dibyan Roy</h2>
+                    <p>Board of Managers</p>
+                    <p>3-6-C</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/daita.jpeg') }}" alt="Mrs. Daita Gupta"></div>
+                <div class="member-info">
+                    <h2>Mrs. Daita Gupta</h2>
+                    <p>Board of Managers</p>
+                    <p>1-5-A</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/falguni.jpeg') }}" alt="Mr. Falguni Deshmukh"></div>
+                <div class="member-info">
+                    <h2>Mr. Falguni Deshmukh</h2>
+                    <p>Board of Managers</p>
+                    <p>8-6-A</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-photo"><img src="{{ url_for('static', filename='images/anand.jpeg') }}" alt="Mr. Anand Sinha"></div>
+                <div class="member-info">
+                    <h2>Mr. Anand Sinha</h2>
+                    <p>Board of Managers</p>
+                    <p>8-8-A</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in/Register{% endblock %}
+
+{% block content %}
+<div class="ls_content">
+    <div class="ls_container">
+        <div class="tabs">
+            <button class="tablinks active" onclick="openTab(event, 'signin')">Sign In</button>
+            <button class="tablinks" onclick="openTab(event, 'register')">Register</button>
+        </div>
+
+        <!-- Sign In Tab -->
+        <div id="signin" class="tabcontent" style="display: block;">
+            <form action="{{ url_for('my_blueprint.signin') }}" method="POST" class="form">
+                <div class="input-group">
+                    <label for="signin-email">Email: <span class="required">*</span></label>
+                    <input type="email" id="signin-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="signin-password">Password: <span class="required">*</span></label>
+                    <input type="password" id="signin-password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Register Tab -->
+        <div id="register" class="tabcontent">
+            <form action="{{ url_for('my_blueprint.register') }}" method="POST" class="form">
+                <div class="input-group">
+                    <label for="register-email">Email: <span class="required">*</span></label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="owner-name">Owner Name: <span class="required">*</span></label>
+                    <input type="text" id="owner-name" name="owner_name" required>
+                </div>
+                <!-- <div class="input-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div> -->
+                <div class="input-group">
+                    <label for="co-owner-name">Co-Owner Name: </label>
+                    <input type="text" id="co-owner-name" name="co_owner_name">
+                </div>
+                <div class="input-group">
+                    <label for="tower">Tower: <span class="required">*</span></label>
+                    <input type="text" id="tower" name="tower" required>
+                </div>
+                <div class="input-group">
+                    <label for="floor">Floor: <span class="required">*</span></label>
+                    <input type="text" id="floor" name="floor" required>
+                </div>
+                <div class="input-group">
+                    <label for="flat-no">Flat No: <span class="required">*</span></label>
+                    <input type="text" id="flat-no" name="flat_no" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Password: <span class="required">*</span></label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password: <span class="required">*</span></label>
+                    <input type="password" id="confirm-password" name="confirm_password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Simulate a click on the default active tab to ensure proper initialization
+        var defaultActiveTab = document.querySelector(".tablinks.active");
+        if (defaultActiveTab) {
+            defaultActiveTab.click();
+        }
+
+        // Handle flash message display and redirection
+        const flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.display = 'none';
+                window.location.href = "{{ url_for('my_blueprint.login') }}";
+            }, 5000);  // 2000 milliseconds = 2 seconds
+        }
+    });
+</script>
+{% endblock %}

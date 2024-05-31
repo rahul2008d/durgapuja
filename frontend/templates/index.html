@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Durga Puja - Devaloke Sonar City{% endblock %}
+
+{% block content %}
+<main>
+    <section class="hero">
+        <div class="hero-slides">
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+        <div class="hero-content">
+            <h1>সোনার সিটির পুজোয় আপনাকে স্বাগত</h1>
+            <p>Join us in the joyous celebration of Durga Puja at Devaloke Sonar City, where tradition meets community spirit!</p>
+        </div>
+    </section>
+    <section id="gallery">
+        <div class="welcome-message">
+        <h1>Relive some of the highlights from Last Year's Celebration!</h1>
+        <p>For a detailed overview of our previous year's Puja and to immerse yourself in this year's arrangements, <a href="{{ url_for('my_blueprint.gallery') }}">visit our gallery section</a>.</p>
+    </div>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/hero1.jpeg') }}" alt="Image 1">
+                </div>
+                <div class="gallery-item">
+                    <video class="gallery-video" autoplay muted loop>
+                        <source src="{{ url_for('static', filename='images/kalabousnan.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/dadson.jpeg') }}" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <video class="gallery-video" autoplay muted loop>
+                        <source src="{{ url_for('static', filename='images/firstlook.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/hero2.jpeg') }}" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/firstglimpse.jpeg') }}" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/joyma.jpeg') }}" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/thakurana.jpeg') }}" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="{{ url_for('static', filename='images/stage.jpeg') }}" alt="Image 2">
+                </div>
+        </div>
+    </section>
+    
+    <section id="schedule">
+        <h2>Puja Schedule</h2>
+        <div class="schedule-container">
+            <div class="schedule-day">
+                    <h3>9th October 2024</h3>
+                    <ul>
+                        <li>6:00 AM - Pran Pratistha</li>
+                        <li>10:00 AM - Pushpanjali</li>
+                        <li>7:00 PM - Aarti</li>
+                    </ul>
+                </div>
+                <div class="schedule-day">
+                    <h3>10th October 2024</h3>
+                    <ul>
+                        <li>6:30 AM - Anjali</li>
+                        <li>11:00 AM - Bhog Prasad</li>
+                        <li>8:00 PM - Cultural Program</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-day">
+                    <h3>11th October 2024</h3>
+                    <ul>
+                        <li>7:00 AM - Anjali</li>
+                        <li>12:00 PM - Bhog Prasad</li>
+                        <li>9:00 PM - Sandhya Aarti</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-day">
+                    <h3>12th October 2024</h3>
+                    <ul>
+                        <li>6:30 AM - Anjali</li>
+                        <li>11:00 AM - Bhog Prasad</li>
+                        <li>8:00 PM - Cultural Program</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-day">
+                    <h3>13th October 2024</h3>
+                    <ul>
+                        <li>6:00 AM - Anjali</li>
+                        <li>10:00 AM - Pushpanjali</li>
+                        <li>7:00 PM - Darpan Visarjan</li>
+                    </ul>
+                </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

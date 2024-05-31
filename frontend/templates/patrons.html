@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Generous Patrons{% endblock %}
+
+{% block content %}
+<div class="p_container">
+    <h1 class="heading">Honoring Our Generous Patrons</h1>
+    <div class="patrons-grid">
+        {% for _ in range(20) %}
+        <div class="patron-card">
+            <div class="patron-image">
+                <img src="patron1.jpg" alt="Patron 1">
+            </div>
+            <div class="patron-details">
+                <h3>John Doe</h3>
+                <p>Contribution: Sponsored the Main Pandal</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
