@@ -1,93 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Durga Puja Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Durga Puja Dashboard</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/user_styles.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
 
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="{{ url_for('static', filename='images/durgamaa.jpeg') }}" alt="Logo">
-                <h1>Durga Puja 2024</h1>
-            </div>
-            <div class="user-info">
-                <div class="user-image">
-                    <img src="{{ url_for('static', filename='uploads/' ~ user.user_image) if user.user_image else url_for('static', filename='images/user-placeholder.png') }}"
-                        alt="User Image" id="userImage">
-                    <form id="uploadImageForm"
-                        action="{{ url_for('my_blueprint.upload_image', user_email=user.email) }}" method="POST"
-                        enctype="multipart/form-data">
-                        <input type="hidden" name="user_email" value="{{ user.email }}">
-                        <input type="file" id="imageUpload" name="user_image" accept="image/*" style="display: none;">
-                        <div class="user-cam"><label for="imageUpload"><i class="fas fa-camera"></i></label></div>
-                    </form>
-                    
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo">
+                    <h1>Durga Puja 2024</h1>
                 </div>
-            </div>
-            <form action="{{ url_for('my_blueprint.logout') }}" method="post">
-                <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </form>
-        </nav>
-    </header>
+                <div class="welcomeMsg">শুভ মহা<span id="day"></span></div>
+                <div class="user-info">
+                    <div class="user-image">
+                        {% if user.user_image %}
+                        <img src="{{ url_for('static', filename='uploads/' + user.user_image) }}" alt="User Image"
+                            id="userImage">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/user-placeholder.png') }}" alt="User Image"
+                            id="userImage">
+                        {% endif %}
+                        <form id="uploadImageForm" action="{{ url_for('my_blueprint.upload_image') }}" method="POST"
+                            enctype="multipart/form-data">
+                            <input type="file" id="imageUpload" name="user_image" accept="image/*"
+                                style="display: none;">
+                            <div class="user-cam" id="user-cam"><label for="imageUpload"><i
+                                        class="fas fa-camera"></i></label></div>
+                        </form>
+                    </div>
+                </div>
+                <form action="{{ url_for('my_blueprint.logout') }}" method="post">
+                    <button id="logoutBtn"><i class="fas fa fa-power-off"></i> Logout</button>
+                </form>
+            </nav>
+        </header>
 
-    <main class="main-container">
-        <section class="main-section">
-            <div class="subscription-details">
-                <h2>{{ user.owner_name + "'s Subscription" }}</h2>
-                <div class="subscription-card">
-                    <h3>Day 1</h3>
-                    <p>Date: <span id="day1Date"></span></p>
-                    <p>Food Opted: <span id="day1Food"></span></p>
-                    <p>Total Charges: <span id="day1Charges"></span></p>
+        <main class="main-container">
+
+            <section class="main-section">
+                <div class="subscription-details">
+                    <h2>{{ "Food Subscription for Tower" + user.tower + ", " + user.floor + user.flat }}</h2>
+                    <div class="subscription-card">
+                        <p>Date: <span id="dayDate"></span></p>
+                        <p>Food Opted: <span id="dayFood"></span></p>
+                        <p>Total Charges: <span id="dayCharges"></span></p>
+                    </div>
+                    <!-- Add more subscription cards for other days -->
                 </div>
-                <!-- Add more subscription cards for other days -->
-            </div>
-        </section>
-    
-        <section class="main-section">
-            <div class="puja-schedule">
-                <h2>Durga Puja Schedule</h2>
-                <div class="schedule-card">
-                    <h3>Day 1</h3>
-                    <p>Date: <span id="day1ScheduleDate"></span></p>
+            </section>
+
+            <section class="main-section">
+                <div class="puja-schedule">
+                    <h2>Durga Puja Schedule</h2>
+                    <div class="schedule-card">
+                        <p>Date: <span id="day1ScheduleDate"></span></p>
+                        <ul>
+                            <li>7:00 AM - Pran Pratistha</li>
+                            <li>10:00 AM - Pushpanjali</li>
+                            <li>6:00 PM - Aarti</li>
+                            <!-- Add more schedule items here -->
+                        </ul>
+                    </div>
+                    <!-- Add more schedule cards for other days -->
+                </div>
+            </section>
+
+            <section class="main-section">
+                <div class="upcoming-events">
+                    <h2>Upcoming Events</h2>
                     <ul>
-                        <li>7:00 AM - Pran Pratistha</li>
-                        <li>10:00 AM - Pushpanjali</li>
-                        <li>6:00 PM - Aarti</li>
-                        <!-- Add more schedule items here -->
+                        <li>
+                            <h3>Cultural Program</h3>
+                            <p>Date: June 5, 2024</p>
+                            <p>Time: 7:00 PM - 10:00 PM</p>
+                            <p>Venue: Community Hall</p>
+                        </li>
+                        <!-- Add more event details here -->
                     </ul>
                 </div>
-                <!-- Add more schedule cards for other days -->
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/groups/2064517917091779" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Developed by</h3>
+                    <p><a href="https://www.linkedin.com/in/rahul2008d/" target="_blank">Rahul Datta</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-        </section>
-
-        <section class="main-section">
-            <div class="upcoming-events">
-                <h2>Upcoming Events</h2>
-                <ul>
-                    <li>
-                        <h3>Cultural Program</h3>
-                        <p>Date: June 5, 2024</p>
-                        <p>Time: 7:00 PM - 10:00 PM</p>
-                        <p>Venue: Community Hall</p>
-                    </li>
-                    <!-- Add more event details here -->
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Durga Puja Festival. All rights reserved.</p>
             </div>
-        </section>
-    </main>      
+        </footer>
 
-    <footer>
-        <p>&copy; 2024 Durga Puja Society. All rights reserved.</p>
-    </footer>
-
-    <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
-</body>
+        <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
+    </body>
 
 </html>

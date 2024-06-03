@@ -12,5 +12,5 @@ my_blueprint.route('/register', methods=['GET', 'POST'], endpoint='register')(re
 my_blueprint.route('/signin', methods=['GET', 'POST'], endpoint='signin')(signin)
 my_blueprint.route('/dashboard/<string:user_email>', endpoint='dashboard')(dashboard)
 my_blueprint.route('/logout', methods=['GET', 'POST'], endpoint='logout')(logout)
-my_blueprint.route('/upload_image/<user_email>', methods=['POST'], endpoint='upload_image')(upload_user_image)
+my_blueprint.route('/upload_image/', methods=['POST'], endpoint='upload_image')(upload_user_image)
 

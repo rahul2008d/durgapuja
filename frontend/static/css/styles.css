@@ -17,7 +17,8 @@ header {
     background-size: cover;
     color: #001f3f;
     padding: 1rem;
-    height: 17vh
+    height: 17vh;
+    overflow: hidden;
 }
 
 nav {
@@ -44,8 +45,9 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #fff;
+    color: #FFFFFF;
     font-size: 0.9rem;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
@@ -59,7 +61,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 9vh;
+    height: 8vh;
     background-color: #f0f8ff; /* Light blue background */
     padding-top: 60px; /* Added padding from the top */
 }
@@ -84,12 +86,12 @@ nav {
 
 .logo-container:hover {
     transform: translateY(-3px); /* Reduced translation */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.2);
 }
 
 .logo-image {
-    width: 40px; /* Reduced logo size */
-    height: 7vh; /* Adjusted height */
+    width: 70px; /* Reduced logo size */
+    height: 8vh; /* Adjusted height */
     border-radius: 50%;
     margin-bottom: 0.5rem; /* Reduced margin */
     transition: transform 0.3s ease;
@@ -100,18 +102,19 @@ nav {
 }
 
 .logo-container h1 {
-    font-size: 0.6rem; /* Adjusted font size */
     /* color: #333; */
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease;
     line-height: 1; /* Added line-height */
-    font-size: 0.8rem;
-    background: linear-gradient(90deg, #FFD166, #FF4C4C); /* Yellow to light reddish gradient */
+    font-size: 0.9rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ffd700, #ffd700);
     -webkit-background-clip: text; /* Apply gradient as text color */
     background-clip: text;
     color: transparent; 
+    white-space: nowrap;
 }
 
 .logo-container:hover h1 {
@@ -125,7 +128,7 @@ nav {
     }
 
     .logo-image {
-        width: 60px; /* Adjusted for smaller screens */
+        width: 70px; /* Adjusted for smaller screens */
     }
 
     .logo-container h1 {
@@ -151,7 +154,6 @@ nav ul li a {
     align-items: center;
 }
 
-
 /* Sign In/Register Button */
 .sign-in-register-btn {
   display: inline-block;
@@ -171,35 +173,6 @@ nav ul li a {
   white-space: nowrap; /* Prevent text wrapping */
 }
 
-.sign-in-register-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-  transition: all 0.75s;
-  opacity: 0;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-}
-
-.sign-in-register-btn:hover::before {
-  opacity: 1;
-  width: 400%;
-  height: 400%;
-}
-
-.sign-in-register-btn:hover {
-  transform: translateY(-3px); /* Slight lift on hover */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-}
-
-.sign-in-register-btn:active {
-  transform: translateY(1px); /* Button press effect */
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Reduced shadow */
-}
 
 /* Positioning the button (example for header) */
 header .sign-in-register-btn {
@@ -208,7 +181,7 @@ header .sign-in-register-btn {
 
 @media (max-width: 768px) {
   header .sign-in-register-btn {
-      margin-left: 1rem;
+      margin-left: 0.1rem;
   }
 }
 
@@ -233,7 +206,7 @@ header .sign-in-register-btn {
   margin-left: 130px; /* Maintain left margin for positioning */
   text-transform: uppercase; /* Make all letters uppercase */
   /* background: linear-gradient(90deg, #ff7e5f, #feb47b); /*Apply a gradient color */
-  background: linear-gradient(90deg, #000000, #ffffff); 
+  background: linear-gradient(90deg, #FFFFFF, #FFFFFF);
   -webkit-background-clip: text; /* Ensure the gradient only affects the text */
   background-clip: text; /* Standard property for background clip */
   color: transparent; /* Make the text color transparent to show the gradient */
@@ -535,7 +508,7 @@ header .sign-in-register-btn {
 
 /* Hero section */
 .hero {
-    height: 600px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

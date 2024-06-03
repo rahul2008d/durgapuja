@@ -74,10 +74,8 @@ def register():
         
 def dashboard(user_email):
     if 'user_email' in session and session['user_email'] == user_email:
-        print('inside dashboard ')
         # Fetch user details based on the provided email
         user = User.query.filter_by(email=user_email).first()
-        print(f"user class data: {user}, argument: {user_email}")
         if user:
             return render_template('dashboard.html', user=user)
     
@@ -90,32 +88,30 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('my_blueprint.index'))
 
-def upload_user_image(user_email):
-    print(user_email)
-    if 'user_email' not in session or session['user_email'] != user_email:
-        flash('Please login to access the dashboard', 'error')
-        return redirect(url_for('my_blueprint.login'))
+def upload_user_image():
+    print(session)
+    # if 'user_email' not in session or session['user_email'] != user_email:
+    #     flash('Please login to access the dashboard', 'error')
+    #     return redirect(url_for('my_blueprint.login'))
 
-    user = User.query.filter_by(email=user_email).first()
+    if 'logged_in' in session:
+        user = User.query.filter_by(email=session['user_email']).first()
+        
     if not user:
         flash('User not found', 'error')
         return redirect(url_for('my_blueprint.login'))
 
     if 'user_image' not in request.files:
-        flash('No file uploaded', 'error')
-        return redirect(url_for('my_blueprint.dashboard', user_email=user_email))
+        print('No file uploaded')
+        return redirect(url_for('my_blueprint.dashboard', user_email=session['user_email']))
 
     file = request.files['user_image']
 
-    if not file or not allowed_file(file.filename):
-        flash('Invalid file type', 'error')
-        return redirect(url_for('my_blueprint.dashboard', user_email=user_email))
-
     filename = secure_filename(file.filename)
-    file_path = os.path.join(current_app.root_path, 'static/uploads', filename)
+    file_path = os.path.join(current_app.root_path, '..', 'frontend/static/uploads', filename)
 
     # Create the 'uploads' directory if it doesn't exist
-    uploads_dir = os.path.join(current_app.root_path, 'static/uploads')
+    uploads_dir = os.path.join(current_app.root_path, '..', 'frontend/static/uploads')
     os.makedirs(uploads_dir, exist_ok=True)
 
     # Save the file to the 'uploads' directory
@@ -125,8 +121,7 @@ def upload_user_image(user_email):
     user.user_image = filename
     db.session.commit()
 
-    flash('Image uploaded successfully', 'success')
-    return redirect(url_for('my_blueprint.dashboard', user_email=user_email))
+    return redirect(url_for('my_blueprint.dashboard', user_email=session['user_email']))
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
