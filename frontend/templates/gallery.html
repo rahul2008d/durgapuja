@@ -1,110 +1,120 @@
 {% extends 'base.html' %}
 
-{% block title %}Devaloke Sonar City{% endblock %}
+{% block title %}Memory - Devaloke Sonar City{% endblock %}
 
 {% block content %}
 <div class="featured_projects" unique-script-id="w-w-dm-id">
   <div class="container-block bg">
     <p class="text-blk heading">
-      Featured Projects
+      A Year of Celebrations: Our Journey Together
     </p>
     <div class="responsive-container-block opt-cont">
       <p class="text-blk tab tab-active" data-filter="all">
         All
       </p>
+      <p class="text-blk tab" data-filter="mobdev">
+        Khunti Puja
+      </p>
       <p class="text-blk tab" data-filter="webdes">
-        Web Design
+        Durgapuja
       </p>
       <p class="text-blk tab" data-filter="graphdes">
-        Graphics Design
+        Kalipuja
       </p>
       <p class="text-blk tab" data-filter="webdev">
-        Web Development
+        Children's Day
       </p>
       <p class="text-blk tab" data-filter="mobdev">
-        Mobile Development
+        New Year Party
+      </p>
+      <p class="text-blk tab" data-filter="mobdev">
+        New Year Party
+      </p>
+      <p class="text-blk tab" data-filter="mobdev">
+        Saraswati Puja
       </p>
     </div>
     <div class="responsive-container-block content">
-      <div class="responsive-container-block img webdes webdev">
+      <div class="responsive-container-block img webdes">
         <img class="im image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.3.png">
         <div class="responsive-container-block overlay">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Web Design Project 1
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for web design project 1.
           </p>
         </div>
       </div>
-      <div class="responsive-container-block img webdes webdev">
+      <div class="responsive-container-block img webdes">
         <div class="responsive-container-block overlay overlay-visible">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Web Design Project 2
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for web design project 2.
           </p>
         </div>
         <img class="im" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.1.png">
       </div>
-      <div class="responsive-container-block img webdes webdev">
+      <div class="responsive-container-block img graphdes">
         <div class="responsive-container-block overlay">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Graphics Design Project 1
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for graphics design project 1.
           </p>
         </div>
         <img class="im" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.3.png">
       </div>
-      <div class="responsive-container-block img graphdes mobdev">
+      <div class="responsive-container-block img webdev">
         <img class="im" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.1.png">
         <div class="responsive-container-block overlay">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Web Development Project 1
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for web development project 1.
           </p>
         </div>
       </div>
-      <div class="responsive-container-block img graphdes mobdev">
+      <div class="responsive-container-block img mobdev">
         <div class="responsive-container-block overlay">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Mobile Development Project 1
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for mobile development project 1.
           </p>
         </div>
         <img class="im" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.3.png">
       </div>
-      <div class="responsive-container-block img graphdes mobdev">
+      <div class="responsive-container-block img mobdev">
         <img class="im" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/P7.1.png">
         <div class="responsive-container-block overlay">
         </div>
         <div class="responsive-container-block desc">
           <p class="text-blk title">
-            Service Rendered
+            Mobile Development Project 2
           </p>
           <p class="text-blk info">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            Description for mobile development project 2.
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
 {% endblock %}
