@@ -147,30 +147,23 @@ nav ul li {
     margin-left: 1rem;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
 /* Sign In/Register Button */
 .sign-in-register-btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(45deg, #FF6A88, #FF99AC); /* Gradient background */
+  padding: 0.5rem 1.25rem; /* Adjusted padding */
+  background: linear-gradient(45deg, #FF6A88, #FF99AC);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.7rem; /* Adjusted font size */
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 40px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition */
+  border-radius: 20px; /* Reduced border radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-  white-space: nowrap; /* Prevent text wrapping */
+  /* overflow: hidden;
+  z-index: 1; */
+  white-space: nowrap;
 }
 
 
@@ -1265,14 +1258,14 @@ body, html {
     position: relative;
 }
 
-.heading::after {
+/* .heading::after {
     content: "";
     display: block;
     width: 80px;
     height: 4px;
     background-color: #ff6a88;
     margin: 10px auto 0;
-}
+} */
 
 .patrons-grid {
     display: grid;
