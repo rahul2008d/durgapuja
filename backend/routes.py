@@ -20,7 +20,7 @@ my_blueprint.route("/patrons", endpoint="patrons")(patrons)
 my_blueprint.route("/login-register", endpoint="login")(login)
 my_blueprint.route("/register", methods=["GET", "POST"], endpoint="register")(register)
 my_blueprint.route("/signin", methods=["GET", "POST"], endpoint="signin")(signin)
-my_blueprint.route("/dashboard/<string:user_email>", endpoint="dashboard")(dashboard)
+my_blueprint.route("/dashboard/<int:id>", endpoint="dashboard")(dashboard)
 my_blueprint.route("/logout", methods=["GET", "POST"], endpoint="logout")(logout)
 my_blueprint.route("/upload_image/", methods=["POST"], endpoint="upload_image")(
     upload_user_image

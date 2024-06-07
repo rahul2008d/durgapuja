@@ -9,20 +9,19 @@ from flask import (
     jsonify,
 )
 
+from sqlalchemy.exc import SQLAlchemyError
+import re
 from backend.models import User
 from backend.database import db
 from backend.encrypt import bcrypt
 import os
-from backend.utils import send_welcome_email
 from flask import session
 from werkzeug.utils import secure_filename
 
 
 def index():
-    if "logged_in" in session:
-        return redirect(
-            url_for("my_blueprint.dashboard", user_email=session["user_email"])
-        )
+    if "logged_in" in session and User.query.get(session["id"]) is not None:
+        return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
     return render_template("index.html")
 
 
@@ -43,9 +42,14 @@ def login():
 
 
 def signin():
-    if request.method == "POST":
+    try:
+        # if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
+
+        # Validate email format
+        if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"error": "Invalid email format"}), 400
 
         # Implement your sign-in logic here
         user = User.query.filter_by(email=email).first()
@@ -55,79 +59,117 @@ def signin():
 
         if not bcrypt.check_password_hash(user.password, password):
             print("hashed password not worked!")
-            return jsonify({"error": "unauthorized"}), 401
+            return jsonify({"error": "bad password"}), 401
 
         session["logged_in"] = True
-        session["user_email"] = email
+        session["user_id"] = user.id
 
-        # Redirect to user dashboard
-        return redirect(url_for("my_blueprint.dashboard", user_email=email))
+        return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
+    except SQLAlchemyError as e:
+        # Handle database errors
+        return jsonify({"error": "Database error: {}".format(str(e))}), 500
+    except Exception as e:
+        # Handle any other unexpected errors
+        return jsonify({"error": "Unexpected error: {}".format(str(e))}), 500
 
 
 def register():
     if request.method == "POST":
-        email = request.form["email"]
-        owner_name = request.form["owner_name"]
-        co_owner_name = request.form.get("co_owner_name")
-        tower = request.form["tower"]
-        floor = request.form["floor"]
-        flat = request.form["flat_no"]
-        password = request.form["password"]
-
-        user_exists = (
-            User.query.filter_by(email=email, password=password).first() is not None
-        )
-        if user_exists:
-            pass
-
-        hashed_password = bcrypt.generate_password_hash(password)
-        new_user = User(
-            email=email,
-            owner_name=owner_name,
-            co_owner_name=co_owner_name,
-            tower=tower,
-            floor=floor,
-            flat=flat,
-            password=hashed_password,
-            user_image=None,
-        )
         try:
+            # Retrieve form data
+            email = request.form.get("email", "").strip()
+            owner_name = request.form.get("owner_name", "").strip()
+            co_owner_name = request.form.get("co_owner_name", "").strip() or None
+            tower = request.form.get("tower", "").strip()
+            floor = request.form.get("floor", "").strip()
+            flat = request.form.get("flat_no", "").strip()
+            password = request.form.get("password", "").strip()
+            confirm_password = request.form.get("confirm_password", "").strip()
+
+            # Validate email format
+            if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+                return jsonify({"error": "Invalid email format"}), 400
+
+            # Check if passwords match
+            if password != confirm_password:
+                return jsonify({"error": "Passwords do not match"}), 400
+
+            # Validate required fields
+            if not all([email, owner_name, tower, floor, flat, password]):
+                return jsonify({"error": "All fields marked with * are required"}), 400
+
+            # Check if user already exists
+            user = User.query.filter_by(email=email).first()
+            if user:
+                return jsonify({"error": "Email ID already exists"}), 400
+
+            # Hash the password
+            hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
+
+            # Create new user object
+            new_user = User(
+                email=email,
+                owner_name=owner_name,
+                co_owner_name=co_owner_name,
+                tower=tower,
+                floor=floor,
+                flat=flat,
+                password=hashed_password,
+                user_image=None,
+            )
+
+            # Add new user to the database
             db.session.add(new_user)
             db.session.commit()
 
+            # Redirect to login page after successful registration
             return redirect(url_for("my_blueprint.login"))
+
+        except SQLAlchemyError as e:
+            # Handle database errors
+            db.session.rollback()
+            return jsonify({"error": "Database error: {}".format(str(e))}), 500
         except Exception as e:
-            print(
-                f"Error adding user to the database: {e}"
-            )  # Add this line for debugging
+            # Handle any other unexpected errors
+            return jsonify({"error": "Unexpected error: {}".format(str(e))}), 500
+
+    # Handle GET request if necessary (e.g., rendering the registration form)
+    return render_template("register.html")
 
 
-def dashboard(user_email):
-    if "user_email" in session and session["user_email"] == user_email:
-        # Fetch user details based on the provided email
-        user = User.query.filter_by(email=user_email).first()
-        if user:
-            return render_template("dashboard.html", user=user)
+def dashboard(id):
+    try:
+        if "logged_in" not in session:
+            return redirect(url_for("my_blueprint.login"))
+            # Fetch user details based on the provided email
+        user_id = session["user_id"]
+        user = User.query.filter_by(id=user_id).first()
+        if user is None:
+            return jsonify({"error": "User not found"}), 404
 
-    # If user is not logged in or user_email does not match session, redirect to login
-    flash("Please login to access the dashboard", "error")
-    return redirect(url_for("my_blueprint.login"))
+        return render_template("dashboard.html", user=user)
+
+    except SQLAlchemyError as e:
+        # Handle database errors
+        return jsonify({"error": "Database error: {}".format(str(e))}), 500
+    except Exception as e:
+        # Handle any other unexpected errors
+        return jsonify({"error": "Unexpected error: {}".format(str(e))}), 500
 
 
 def logout():
-    session.pop("user_email", None)
-    session.pop("logged_in", None)
-    return redirect(url_for("my_blueprint.index"))
+    try:
+        session.pop("user_id", None)
+        session.pop("logged_in", None)
+        return redirect(url_for("my_blueprint.index"))
+    except Exception as e:
+        # Handle any unexpected errors
+        return jsonify({"error": "Unexpected error: {}".format(str(e))}), 500
 
 
 def upload_user_image():
-    print(session)
-    # if 'user_email' not in session or session['user_email'] != user_email:
-    #     flash('Please login to access the dashboard', 'error')
-    #     return redirect(url_for('my_blueprint.login'))
-
     if "logged_in" in session:
-        user = User.query.filter_by(email=session["user_email"]).first()
+        user = User.query.filter_by(email=session["user_id"]).first()
 
     if not user:
         flash("User not found", "error")
@@ -135,9 +177,7 @@ def upload_user_image():
 
     if "user_image" not in request.files:
         print("No file uploaded")
-        return redirect(
-            url_for("my_blueprint.dashboard", user_email=session["user_email"])
-        )
+        return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
 
     file = request.files["user_image"]
 
@@ -157,7 +197,7 @@ def upload_user_image():
     user.user_image = filename
     db.session.commit()
 
-    return redirect(url_for("my_blueprint.dashboard", user_email=session["user_email"]))
+    return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
 
 
 def allowed_file(filename):

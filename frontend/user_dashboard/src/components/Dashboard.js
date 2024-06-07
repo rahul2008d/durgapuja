@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import "./Dashboard.css";
 
 function Dashboard() {
   return (
     <div>
       <Header />
-
       <Main />
-
       <Footer />
     </div>
   );
@@ -39,25 +38,18 @@ function Main() {
         <h2>Card 1</h2>
         <ul>
           <li>Data 1</li>
-          <li>Data 2</li>
-          <li>Data 3</li>
-          <li>Data 4</li>
-          <li>Data 5</li>
         </ul>
       </div>
       <div className="card">
         <h2>Card 2</h2>
         <ul>
           <li>Data 1</li>
-          <li>Data 2</li>
-          <li>Data 3</li>
         </ul>
       </div>
       <div className="card">
         <h2>Card 3</h2>
         <ul>
           <li>Data 1</li>
-          <li>Data 2</li>
         </ul>
       </div>
     </section>
@@ -65,8 +57,10 @@ function Main() {
 }
 
 function Footer() {
-  <footer>
-    <p>&copy; 2024</p>
-  </footer>;
+  return (
+    <footer>
+      <p>&copy; 2024</p>
+    </footer>
+  );
 }
 export default Dashboard;

@@ -1,10 +1,19 @@
 /* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     /* background-color: #f5f5f5; */
-    color: #333;
+    color: #333; */
+
+    font-family: "Roboto Mono", sans-serif;
+    color: #252525;
+    font-weight: 400;
+    background-color: #f7f2e9;
+    border-bottom: 1.6rem solid #edc84b;
+    min-height: 100vh;
+    /* padding: 3.2rem; */
+    padding-bottom: 6rem;
 
     background-image: url('../images/headerbg.jpeg');
     section{
@@ -23,10 +32,13 @@ header {
     background: linear-gradient(45deg, #FF9A8B, #FF6A88, #FF99AC);
     background-attachment: fixed;
     background-size: cover;
-    color: #001f3f;
+    color: rgb(0, 15, 5);
+    font-weight: bold;
     height: 17vh;
     padding: 0.5rem;
 }
+
+
 
 nav {
     display: flex;
@@ -57,14 +69,14 @@ nav {
 }
 
 .welcomeMsg {
-  background: linear-gradient(90deg, #ffd700, #ffd700); /* Yellow background */
-  color: #333; /* Font color */
+  background: linear-gradient(45deg, #FFFDD0, #FFFFFF, #808080); /* Yellow background */
+  color: steelblue; /* Font color */
   font-family: "Siyam Rupali", Cambria, sans-serif;
   font-size: 2rem; /* Font size */
   font-weight: bold; /* Font weight */
-  padding: 20px; /* Padding */
+  padding: 20px;
   border-radius: 10px; /* Rounded corners */
-  margin: 50px auto; /* Center horizontally */
+  margin: 30px auto; /* Center horizontally */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increased shadow for depth */
   text-align: center; /* Center the text */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
@@ -102,15 +114,23 @@ nav {
 
 #logoutBtn {
     background-color: transparent;
-    color:  #007BFF; ;
+    color: #fff;
     border: none;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
     display: flex;
     align-items: center;
     margin-right: 1px;
-    border-top: 0.1rem
+    /* border-top: 0.1rem;  */
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(45deg,#000000, #808080);
+    text-transform: uppercase;
+    padding: 0.2rem 0.1rem;
+    z-index: 10;
+    
+    /* gap: 2.4rem;  */
 }
 
 #logoutBtn i {
@@ -144,11 +164,11 @@ nav {
 .subscription-details,
 .upcoming-events,
 .puja-schedule {
-    padding: 20px;
+    padding: 10px;
     background: #808080;
     transition: ease all 2.3s;
-    font-size: 22px;
-    perspective: 1200px;
+    font-size: 20px;
+    perspective: 500px;
     background-size: cover;
     transform-style: preserve-3d;
     background-position: center center;
@@ -198,14 +218,14 @@ footer {
     margin: 0 auto; /* Center the container */
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap; /* Wrap columns */
   }
   
   .footer-column {
     flex: 1;
     margin-right: 30px; /* Spacing between columns */
-    margin-bottom: 20px; /* Spacing at the bottom */
+    margin-bottom: 10px; /* Spacing at the bottom */
     color: #fff; /* White text color */
   }
   

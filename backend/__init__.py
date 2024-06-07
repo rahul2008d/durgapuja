@@ -25,6 +25,7 @@ def create_app(config="backend.config.Config"):
     migrate = Migrate(app, db)
 
     bcrypt.init_app(app)
+
     app.register_blueprint(my_blueprint, url_prefix="/")
 
     admin = Admin(app, name="Admin", template_mode="bootstrap3")
