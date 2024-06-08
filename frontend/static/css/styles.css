@@ -16,10 +16,10 @@ header {
   background-attachment: fixed;
   background-size: cover;
   color: #001f3f;
-  padding: 1rem;
+  padding: 1.5rem;
   height: 17vh;
-  overflow: hidden;
-  display: flex;
+  /* overflow: hidden;
+  display: flex; */
 }
 
 nav {
@@ -62,7 +62,7 @@ nav {
   align-items: center;
   height: 8vh;
   background-color: #f0f8ff; /* Light blue background */
-  padding-top: 60px; /* Added padding from the top */
+  padding-top: 10px; /* Added padding from the top */
 }
 
 .logo a {

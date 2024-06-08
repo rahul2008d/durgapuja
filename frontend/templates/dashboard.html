@@ -18,11 +18,18 @@
     <header>
       <nav>
         <div class="logo">
-          <img
-            src="{{ url_for('static', filename='images/logo.jpeg') }}"
-            alt="Logo"
-          />
-          <h1>Durga Puja 2024</h1>
+          <a href="{{ url_for('my_blueprint.dashboard', id=user.id) }}">
+            <div class="logo-container">
+              <img
+                src="{{ url_for('static', filename='images/logo.jpeg') }}"
+                alt="DurgaMaa"
+                class="logo-image"
+              />
+              <h1 href="{{ url_for('my_blueprint.dashboard', id=user.id) }}">
+                দূর্গা পূজা 2024
+              </h1>
+            </div>
+          </a>
         </div>
         <div class="welcomeMsg">শুভ মহা<span id="day"></span></div>
         <div class="user-info">

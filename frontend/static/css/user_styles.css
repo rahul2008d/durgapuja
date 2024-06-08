@@ -48,16 +48,69 @@ nav {
     border-top: 1px
 }
 
+/* Logo Section */
 .logo {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  background-color: #f0f8ff; /* Light blue background */
+  padding-top: 10px; /* Added padding from the top */
 }
 
-.logo img {
-    width: 70px;
-    height: 8vh;
-    margin-right: 10px;
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120px; /* Reduced width */
+  padding: 0.2rem; /* Reduced padding */
+  background: #fff;
+  border-radius: 8px; /* Reduced border radius */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: translateY(-3px); /* Reduced translation */
+  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.logo-image {
+  width: 70px; /* Reduced logo size */
+  height: 8vh; /* Adjusted height */
+  border-radius: 50%;
+  margin-bottom: 0.5rem; /* Reduced margin */
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo-image {
+  transform: scale(1.05); /* Reduced scale */
+}
+
+.logo-container h1 {
+  /* color: #333; */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  line-height: 1; /* Added line-height */
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffd700, #ffd700);
+  -webkit-background-clip: text; /* Apply gradient as text color */
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.logo-container:hover h1 {
+  color: #007bff; /* Accent color */
 }
 
 .user-info {
