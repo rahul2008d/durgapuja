@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+// import React, { useEffect } from "react";
+// import axios from "axios";
+import { useParams } from "react-router-dom";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const { id } = useParams();
+
   return (
     <div>
-      <Header />
+      <Header id={id} />
       <Main />
       <Footer />
     </div>
   );
 }
 
-function Header() {
+function Header({ id }) {
   return (
     <div>
       <div className="logo">
         <img src={"logo0192.png"} alt="Logo" />
       </div>
       <div className="welcome-message">
-        Welcome, <span>John Doe</span>
+        Welcome user, <span>{id}</span>
       </div>
       <div className="profile-pic">
         <img src="https://picsum.photos/200/300" alt="Profile Pic" />

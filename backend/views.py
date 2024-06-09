@@ -64,10 +64,7 @@ def signin():
         session["logged_in"] = True
         session["user_id"] = user.id
 
-        if 1 == 2:
-            return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
-        path = os.path.join(current_app.static_folder, "build")
-        return send_from_directory(path, "index.html")
+        return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
 
     except SQLAlchemyError as e:
         # Handle database errors
@@ -151,7 +148,8 @@ def dashboard(id):
         if user is None:
             return jsonify({"error": "User not found"}), 404
 
-        return render_template("dashboard.html", user=user)
+        path = os.path.join(current_app.static_folder, "build")
+        return send_from_directory(path, "index.html")
 
     except SQLAlchemyError as e:
         # Handle database errors

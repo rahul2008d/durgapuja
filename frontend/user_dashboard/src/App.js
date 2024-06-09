@@ -5,15 +5,15 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
+        {/* <Route path="*" element={<Navigate to="/DashboardWithoutId " />} /> */}
       </Routes>
     </Router>
   );
