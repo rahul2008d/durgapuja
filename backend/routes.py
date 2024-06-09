@@ -10,6 +10,7 @@ from backend.views import (
     dashboard,
     logout,
     upload_user_image,
+    serve_react_static_file,
 )
 
 my_blueprint = Blueprint("my_blueprint", __name__)
@@ -24,4 +25,10 @@ my_blueprint.route("/dashboard/<int:id>", endpoint="dashboard")(dashboard)
 my_blueprint.route("/logout", methods=["GET", "POST"], endpoint="logout")(logout)
 my_blueprint.route("/upload_image/", methods=["POST"], endpoint="upload_image")(
     upload_user_image
+)
+
+
+# Serve React static files
+my_blueprint.route("/static/build/static/<path:filename>", methods=["GET"])(
+    serve_react_static_file
 )

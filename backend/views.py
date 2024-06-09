@@ -64,7 +64,11 @@ def signin():
         session["logged_in"] = True
         session["user_id"] = user.id
 
-        return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
+        if 1 == 2:
+            return redirect(url_for("my_blueprint.dashboard", id=session["user_id"]))
+        path = os.path.join(current_app.static_folder, "build")
+        return send_from_directory(path, "index.html")
+
     except SQLAlchemyError as e:
         # Handle database errors
         return jsonify({"error": "Database error: {}".format(str(e))}), 500
@@ -203,3 +207,10 @@ def upload_user_image():
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def serve_react_static_file(filename):
+    print("""I am here in "serve-react-static-file" method""")
+    path = os.path.join(current_app.root_path, "..", "frontend/static/build/static")
+    print(os.listdir(path))
+    return send_from_directory(path, filename)
